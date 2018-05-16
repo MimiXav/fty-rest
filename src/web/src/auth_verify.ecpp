@@ -71,6 +71,17 @@ if(!checked_access_token.empty()) {
     } else {
         http_die("not-authorized", "");
     }
+    
+    // Prepare context params for audit-log
+    std::hash<std::string> hash_token;
+    size_t contextToken = hash_token(gaccess_token);
+    std::map<std::string, std::string> contextParam;
+    contextParam.insert(std::make_pair("username", user.login()));
+    contextParam.insert(std::make_pair("uid", std::to_string(user.uid())));
+    contextParam.insert(std::make_pair("sessionid", std::to_string(contextToken)));
+    // Set the fty-log context
+    Ftylog::setContext(contextParam);
+//log_info_audit ("Opening a new web session");
 }
 
 #ifdef DEBUG
