@@ -35,7 +35,7 @@
 #include <libcidr.h>
 #include <cxxtools/allocator.h>
 #if defined (HAVE_TNTNET)
-#include <tntnet.h>
+#include <tnt/tntnet.h>
 #endif
 #include <tntdb.h>
 #if defined (HAVE_LIBMAGIC)
